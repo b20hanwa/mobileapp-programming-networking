@@ -10,4 +10,8 @@ public class Mountains {
     private Integer size;
     private Integer cost;
     private Auxdata auxdata;
+
+    public String getName() {
+        return name;
+    }
 }
