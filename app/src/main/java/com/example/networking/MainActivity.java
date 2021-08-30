@@ -7,6 +7,8 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.google.gson.Gson;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,8 +16,11 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.FormatFlagsConversionMismatchException;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Mountains[] mountains;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +73,14 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String json) {
             Log.d("TAG", json);
+
+            Gson gson= new Gson();
+            mountains=gson.fromJson(json,Mountains[].class);
+
+            for(int i=0; i<mountains.length; i++) {
+                Log.d("MainActivity==>","Hittade ett berg");
+            }
+
         }
     }
 }
